@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <!--
+            v-bind指令可以在其名称后面带一个参数，中间放一个冒号隔开，
+            这个参数通常是HTML元素的特性（attribute），例如：v-bind:class
+            v-bind:argument="expression" 一个简单的分页条，v-bind指令作用于元素的class特性上。
+            这个指令包含一个表达式，表达式的含义是：高亮当前页。
+        -->
+        <link rel="stylesheet" href="styles/demo.css" />
+    </head>
+    <body>
+        <div id="app">
+            <ul class="pagination">
+                <li v-for="n in pageCount">
+                    <a href="javascripit:void(0)" v-bind:class="activeNumber === n + 1 ? 'active' : ''">{{ n + 1 }}</a>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                activeNumber: 5,
+                pageCount: 10
+            }
+        })
+    </script>
+</html>
