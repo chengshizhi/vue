@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id = "computed_props">
+      <input type = "text" v-model = "userinfo" />
+      <p>名字：{{name}}</p>
+      <p>城市：{{city}}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#computed_props',
+            data: {
+                name: "Maxsu",
+                city: "海口"
+            },
+            methods: {},
+            computed: {
+                userinfo: {
+                    get: function() {
+                        if (this.city) {
+                            return this.name + " " + this.city;
+                        } else {
+                            return this.name;
+                        }
+
+                    },
+                    set: function(name) {
+                        var fname = name.split(" ");
+                        this.name = fname[0];
+                        if (fname[1] != undefined) {
+                            this.city = fname[1];
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

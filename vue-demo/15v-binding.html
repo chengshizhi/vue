@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="databinding">
+        {{title}}
+        <hr/>
+        <a href="hreflink" target="_blank"> 点击我 </a> <br/>
+        <a href="{{hreflink}}" target="_blank"> 点击我 </a> <br/>
+        <a v-bind:href="hreflink" target="_blank">易百教程 </a> <br/>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#databinding',
+            data: {
+                title: "数据绑定",
+                hreflink: "http://www.yiibai.com"
+            }
+        });
+    </script>
+</body>
+
+</html>
