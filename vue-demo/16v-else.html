@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <template v-if="Math.random() > 0.5">
+            <h2>大于0.5显示</h2>
+            <p>内容A</p>
+        </template>
+        <template v-else>
+            <h2>小于或等于0.5显示</h2>
+            <p>内容B</p>
+        </template>    
+    </div>
+    
+    <script type="text/javascript">
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
