@@ -4,30 +4,39 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
 </head>
 
 <body>
     <div id="example">
-       <span>{{msg}}</span>
+        <input type="text" v-model="msg"/>
+        <br>
+        <span>{{msg}}</span>
     </div>
     <script type="text/javascript">
 
-        new Vue({
+        var vm = new Vue({
             el: '#example',
             data: {
                 msg:1111
             },
+            beforeCreate: function() {
+                console.log("创建前")
+            },
             created:function () {
-                alert("初始化");
+                console.log("创建之后");
             },
-            beforeCompile:function () {
-                alert("编译之前");
+            beforeMount:function () {
+                console.log("mount之前")
             },
-            compiled:function () {
-                alert("编译之后");
+            mounted:function () {
+                console.log("mount之后")
             },
-            ready:function () {
-                alert("插入文档之中");
+            beforeUpdate:function () {
+                console.log("更新前");
+            },
+            updated: function() {
+                console.log("更新完成");
             },
             beforeDestroy:function () {
                 alert("销毁之前");
@@ -36,6 +45,9 @@
                 alert("销毁之后");
             }
         })
+/*        document.onclick=function() {
+            vm.$destroy();
+        }*/
     </script>
 </body>
 </html>
