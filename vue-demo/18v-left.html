@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="example">
+       <span>{{msg}}</span>
+    </div>
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#example',
+            data: {
+                msg:1111
+            },
+            created:function () {
+                alert("初始化");
+            },
+            beforeCompile:function () {
+                alert("编译之前");
+            },
+            compiled:function () {
+                alert("编译之后");
+            },
+            ready:function () {
+                alert("插入文档之中");
+            },
+            beforeDestroy:function () {
+                alert("销毁之前");
+            },
+            destroyed:function () {
+                alert("销毁之后");
+            }
+        })
+    </script>
+</body>
+</html>
