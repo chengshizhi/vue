@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        window.onload = function () {
+            var vm = new Vue({
+                data:{
+                    msg:123
+                },
+                methods:{
+
+                }
+            }).$mount('#box');
+        };
+        Vue.direction('red',function () {
+            this.el.style.background='red';
+        });
+    </script>
+</body>
+    <div id="box">
+        <span v-red>
+            2222
+        </span>
+    </div>
+</html>
