@@ -7,6 +7,28 @@
 </head>
 
 <body>
+    <div id="box">
+        <input type="button" @click="a='aaa'" value="我是组件a"/>
+        <input type="button" @click="a='bbb" value="我是组件b"/>
+        <comment :is = "a"></comment>
+    </div>
+    <script>
+        var vm = new Vue({
+           el:'#box',
+           data:{
+                a:'aaa'
+           },
+           components:{
+               'aaa':{
+                   template:'<h2>我是组件aaa</h2>'
+               },
+               'bbb':{
+                   template:'<h2>我是组件bbb</h2>'
+               }
+           }
+        });
+    </script>
+    <!--
     <div id="example">
         <child my-message="hello!"></child>
     </div>
@@ -18,15 +40,16 @@
             // 同样也可以在 vm 实例中通过 this.message 来使用
             template: '<span>{{ message }}</span>'
         })
-        /**
+
         Vue.component('child', {
             // 在 JavaScript 中使用 camelCase
             props: ['myMessage'],
             template: '<span>{{ myMessage }}</span>'
-        })*/
+        })
         new Vue({
             el: '#example'
         })
     </script>
+    -->
 </body>
 </html>
