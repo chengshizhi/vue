@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script src="js/vue.js"></script>
+    <script src="js/lib/jquery/jquery.js"></script>
+    <script src="js/lib/vue/dist/vue.js"></script>
+    <script src="js/lib/vue-resource/dist/vue-resource.js"></script>
 </head>
 
 <body>
     <div id="example">
-        <child my-message="hello!"></child>
+        <child message="hello!"></child>
     </div>
-    <script type="text/javascript">
-        Vue.component('child', {
-            // 声明 props
-            props: ['message'],
-            // 就像 data 一样，prop 也可以在模板中使用
-            // 同样也可以在 vm 实例中通过 this.message 来使用
-            template: '<span>{{ message }}</span>'
-        })
-        /**
-        Vue.component('child', {
+</body>
+<script type="text/javascript">
+    Vue.component('child', {
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 也可以在模板中使用
+        // 同样也可以在 vm 实例中通过 this.message 来使用
+        template: '<h1>{{ message }}</h1>'
+    })
+    /**
+     Vue.component('child', {
             // 在 JavaScript 中使用 camelCase
             props: ['myMessage'],
             template: '<span>{{ myMessage }}</span>'
         })*/
-        new Vue({
-            el: '#example'
-        })
-    </script>
-</body>
+    new Vue({
+        el: '#example'
+    })
+</script>
 </html>

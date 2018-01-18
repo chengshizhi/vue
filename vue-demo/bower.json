@@ -14,5 +14,12 @@
     "js/lib",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "vue": "1.0.28",
+    "jquery": "1.10.2"
+  },
+  "dependencies": {
+    "vue-resource": "0.1.17"
+  }
 }
