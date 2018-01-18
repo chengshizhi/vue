@@ -2,6 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="js/lib/vue/dist/vue.js"></script>
         <!--
             v-if是条件渲染指令，它根据表达式的真假来删除和插入元素，它的基本语法如下：
             v-if="expression" expression是一个返回bool值的表达式，
@@ -17,9 +18,7 @@
             <h1 v-if="name.indexOf('jack') >= 0">Name: {{ name }}</h1>
         </div>
     </body>
-    <script src="js/vue.js"></script>
     <script>
-        
         var vm = new Vue({
             el: '#app',
             data: {

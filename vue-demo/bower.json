@@ -1,0 +1,25 @@
+{
+  "name": "vue-demo",
+  "homepage": "https://github.com/chengshizhi/vue",
+  "authors": [
+    "'chengshizhi' <'5966552@qq.com'>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/lib",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "vue": "1.0.28",
+    "jquery": "1.10.2"
+  },
+  "dependencies": {
+    "vue-resource": "0.1.17"
+  }
+}

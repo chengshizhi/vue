@@ -3,6 +3,7 @@
         <head>
             <meta charset="UTF-8">
             <title></title>
+            <script src="js/lib/vue/dist/vue.js"></script>
             <!--
                 可以用v-else指令为v-if或v-show添加一个“else块”。
                 v-else元素必须立即跟在v-if或v-show元素的后面——否则它不能被识别。
@@ -17,7 +18,6 @@
                 <h1 v-else>Sex: {{ sex }}</h1>
             </div>
         </body>
-        <script src="js/vue.js"></script>
         <script>
             var vm = new Vue({
                 el: '#app',
