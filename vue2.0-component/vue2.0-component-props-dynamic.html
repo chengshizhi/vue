@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态 Prop传递数据</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <input type="text" v-model="msg">
+        <br>
+        <child :input-value="msg"></child>
+    </div>
+    <script>
+        Vue.component('child', {
+            props: ['inputValue'],           
+            template: '<div>child==>{{inputValue}}</div>'
+        })
+
+        new Vue({
+            el: '#example',
+            data: {
+                msg: '请输入'
+            }
+        });
+    </script>
+</body>
+</html>

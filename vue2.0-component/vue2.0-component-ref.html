@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件引用</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <children ref="chi"></children>
+    </div>
+    <script>
+        var children = {
+            data:function(){  
+                return {  
+                    test:'我是测试数据'
+                }  
+            },  
+            methods: {
+　　          chilFn (msg) {
+　　　　        console.log(msg);
+　　          }
+            },
+            template: '<div>我是子组件</div>',          
+        }
+       
+        var vm = new Vue({
+            el: '#example',
+            components: {
+                children
+            },
+            mounted () {
+                // this.$refs 持有已注册过ref的所有子组件
+                let txt = this.$refs.chi.test;
+                console.log(txt);  
+                this.$refs.chi.chilFn('我是测试数据2');                           
+            }
+        })
+    </script>
+</body>
+</html>

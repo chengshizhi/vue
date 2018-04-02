@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件切换</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        动态组件实现tab切换效果<br>
+　　　　<nav>
+    　　　　<a href="javascript:void(0);" @click="toggleTabs(first);">{{first}}</a>
+    　 　　 <a href="javascript:void(0);" @click="toggleTabs(second);">{{second}}</a>
+    　　　  <a href="javascript:void(0);" @click="toggleTabs(third);">{{third}}</a>
+　　　　</nav>
+        <!-- 
+            is 特性动态绑定子组件，可以让多个组件可以使用同一个挂载点，并动态切换。如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。
+        -->
+　　　　<first :is="currentView" keep-alive></first>
+    </div>
+
+    <script>
+        var first = {template: '<div>我是组件一</div>'}
+        var second = {template: '<div>我是组件二</div>'}
+        var third = {template: '<div>我是组件三</div>'}
+
+        var vm = new Vue({
+            el: '#example',
+            data () {
+                return {
+                    first: "first", 
+                    second: "second",
+                    third: "third", 
+                    currentView: 'first',
+                };
+            },
+            components: {
+                first,
+                second,
+                third
+            },
+            methods: {
+                toggleTabs (tabText) {
+                    this.currentView = tabText;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

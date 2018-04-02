@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单向数据流</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <input type="text" v-model="msg">
+        <br>
+        <child :input-value="msg"></child>
+    </div>
+    <script>
+        /**
+            在两种情况下，忍不住想去修改 prop 中数据：
+            Prop 作为初始值传入后，子组件想把它当作局部数据来用；
+        
+        Vue.component('child', {
+            // 声明 props
+            props: ['inputValue'],
+            data: function () {
+                return { counter: this.inputValue+1 }
+            },
+            template: '<div>child==>{{counter}}</div>'
+        })*/
+
+        /**            
+            Prop 作为原始数据传入，由子组件处理成其它数据输出。
+        */
+        Vue.component('child', {
+            // 声明 props
+            props: ['inputValue'],
+            computed: {
+                counter: function () {
+                    return this.inputValue+1
+                }
+            },
+            template: '<div>child==>{{counter}}</div>'
+        })
+        
+        new Vue({
+            el: '#example',
+            data: {
+                msg: 0
+            }
+        });
+        /**
+            注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。
+        */
+    </script>
+</body>
+</html>

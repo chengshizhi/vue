@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用 emit传递(带参数)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="example">
+        <p v-for="msg in messages">{{ msg }}</p>
+        <child-test v-on:message="handleMessage"></child-test>
+    </div>
+    <script>
+        Vue.component('childTest', {
+            template: `<div>
+                <input type="text" v-model="message" />
+                <button v-on:click="sendMessage">Send</button>
+              </div>`,
+            data: function () {
+                return {
+                    message: 'test message'
+                }
+            },
+            methods: {
+                sendMessage(){
+                    this.$emit('message', { message: this.message, test: '123'})
+                }
+            }
+        })
+
+        new Vue({
+            el: '#example',
+            data: {
+                messages: []
+            },
+            methods: {
+                handleMessage: function (payload) {
+                    this.messages.push(payload.test);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

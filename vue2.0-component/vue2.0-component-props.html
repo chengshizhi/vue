@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用 Prop 传递数据</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+<body>
+    <!--
+    camelCase vs kebab-case
+    HTML 特性是不区分大小写的。所以，当使用的不是字符串模板时，camelCase (驼峰式命名) 的 prop 需要转换为相对应的 kebab-case (短横线分隔式命名)
+    -->
+    <div id="example">
+        <child input-value="hello"></child>
+    </div>
+    <script>
+        Vue.component('child', {
+            props: ['inputValue'],            
+            /**
+                props: {
+                    inputValue: {
+                        type: Number,
+                        required: true
+                    }
+                },
+                
+            */
+            template: '<div>child==>{{inputValue}}</div>'
+        })
+
+        new Vue({
+            el: '#example'
+        });
+    </script>
+</body>
+</html>
