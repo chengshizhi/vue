@@ -6,38 +6,56 @@
         <script src="js/lib/vue/dist/vue.js"></script>
         <script src="js/lib/vue-resource/dist/vue-resource.js"></script>
     </head>
-    <body>
-        <div id="box">
-            <input type="text" v-model="ml"  @keyup="search()"/>
-            <ul>
-                <li v-for="value in myDatas">
-                    {{value}}
-                </li>
-            </ul>
-            <p>没有数据</p>
+<body>
+    <div class="searchBox" id="app">
+        <div class="search-wrapper">
+            <input class="searchInput" type="text" v-model="t1" @keyup="get($event)" @keydown.down="next" @keydown.up.prevent="last">>
+            <button>百度一下</button>
         </div>
+        <ul>
+            <li v-for="(value, index) in searchList" :class="{active: index == now}">{{value}}</li>
+        </ul>
+        <!-- <p v-show="searchList.length == 0">暂无数据...</p> -->
+    </div>
+</body>
 
-        <script>
-                new Vue({
-                    el: '#box',
-                    data: {
-                        myDatas:[],
-                        ml:''
-                    },
-                    methods:{
-                        search:function(){
-                            this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
-                                "wd":encodeURIComponent(this.ml)
-                            },{
-                                jsonp:"cb"
-                            }).then(function(res){
-                                this.myDatas = res.data.s;
-                            },function(res){
-                                alert(res.status);
-                            });
-                        }
-                    }
-                });
-        </script>
-    </body>
+<script>
+  new Vue({
+      el: "#app",
+      data: {
+        searchList: [],//搜索弹出列表
+        t1: '',//输入框里面的值
+        now: -1//输入框里面的值的索引，0为列表第一项
+      },
+      methods: {
+        get: function(evt) {
+            if(evt.keyCode == 38 || evt.keyCode == 40) return
+            this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{//跨域请求数据
+                params: {
+                    wd: this.t1//输入的关键词
+                },
+                jsonp: 'cb'//这里是callback
+            }).then((res) => {//请求成功回调，请求来的数据赋给searchList数组
+                this.searchList = res.body.s
+            },(res) => {//失败显示状态码
+                alert(res.status)
+            })
+        },
+        next: function() {//向下选择
+            this.now ++
+            if(this.now == this.searchList.length){//判断是否超出
+              this.now = 0
+            }
+            this.t1 = this.searchList[this.now]
+        },
+        last: function() {//向上选择
+            this.now --
+            if(this.now < 0){
+              this.now = this.searchList.length -1
+            }
+            this.t1 = this.searchList[this.now]
+        }
+      }
+  })
+</script>
 </html>

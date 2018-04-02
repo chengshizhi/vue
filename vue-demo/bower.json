@@ -20,6 +20,6 @@
     "jquery": "1.10.2"
   },
   "dependencies": {
-    "vue-resource": "0.1.17"
+    "vue-resource": "0.1.14"
   }
 }

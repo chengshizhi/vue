@@ -2,14 +2,20 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <script src="js/lib/jquery/jquery.js"></script>
-        <script src="js/lib/vue/dist/vue.js"></script>
-        <script src="js/lib/vue-resource/dist/vue-resource.js"></script>
+
+        <script src="js/vue.js"></script>
+        <script src="js/vue-resource.js"></script>
     </head>
-    <body>
-        <div id="demo">{{ fullName }}</div>
+    <body> 
+        <div id="demo">
+          <input type="text" v-model:value="firstName" />  
+          <input type="text" v-model:value="lastName" /> 
+          <hr/>
+        {{ fullName }}
+        </div>
         <script>
             window.onload = function () {
+              /** 观察者
               var vm = new Vue({
                 el: '#demo',
                 data: {
@@ -25,8 +31,9 @@
                     this.fullName = this.firstName + ' ' + val
                   }
                 }
-              });
-              /**
+              });*/
+             
+             /** 计算属性
               var vm = new Vue({
                 el: '#demo',
                 data: {
@@ -38,7 +45,8 @@
                     return this.firstName + ' ' + this.lastName
                   }
                 }
-              })*/
+              })
+              */
             };
         </script>
     </body>
